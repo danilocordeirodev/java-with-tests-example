@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/customer?useTimezone=true&serverTimezone=UTC
+    username: cordeiro
+    password: password
+  flyway:
+    url: jdbc:postgresql://localhost:5432/customer?useTimezone=true&serverTimezone=UTC
+    user: cordeiro
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
