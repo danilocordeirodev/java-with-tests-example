@@ -1,0 +1,37 @@
+services:
+  postgresql:
+    container_name: test-ex-db
+    image: postgres:16.3-alpine
+    environment:
+      POSTGRES_USER: cordeiro
+      POSTGRES_PASSWORD: password
+    volumes:
+      - test-ex-db_data:/var/lib.postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - test-ex-network
+    restart: always
+
+
+  pgadmin:
+    container_name: test-ex-db-admin
+    image: dpage/pgadmin4:8.9
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - test-ex-db-admin_data:/var/lib/pgadmin
+    networks:
+      - test-ex-network
+
+networks:
+  test-ex-network:
+
+volumes:
+  test-ex-db_data:
+  test-ex-db-admin_data:
